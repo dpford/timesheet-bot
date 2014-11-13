@@ -18,7 +18,7 @@ This bot will check to see if you've submitted hours for the previous day in you
 1. Clone the repo on your server
 2. Setup a virtual environment and install requirements.txt
 3. Add the environment variables to a sourceable file
-4. Customize job.sh if needed
+4. Copy job.sh.sample to job.sh and customize as needed
 5. `crontab -e` and add something like:
 ```
 30 9 * * 2-6 /path/to/job.sh

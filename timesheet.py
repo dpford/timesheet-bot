@@ -7,7 +7,7 @@ driver = webdriver.PhantomJS()
 UNANET_URL = os.environ.get('UNANET_URL')
 UNANET_USERNAME = os.environ.get('UNANET_USERNAME')
 UNANET_PASSWORD = os.environ.get('UNANET_PASSWORD')
-UNANET_PROJECT = os.environ.get('UNANET_PROJECT')
+UNANET_PROJECT = "\""+os.environ.get('UNANET_PROJECT')+ "\""
 UNANET_HOURS = os.environ.get('UNANET_HOURS')
 
 # Login
@@ -36,13 +36,14 @@ if driver.find_element_by_name('t__{}'.format(position)).get_attribute('value'):
             datetime.datetime.now(),
             UNANET_PROJECT,
             datetime.date.today() - datetime.timedelta(days=1)))
-row = driver.find_element_by_xpath('//tr[@title={}]'.format(UNANET_PROJECT))
-row_id = row.get_attribute('id')
-cell = row.find_element_by_name('d_{}_{}'.format(row_id, position))
-cell.send_keys(UNANET_HOURS)
-driver.find_element_by_xpath('//button[@title="Save"]').click()
-with open('timesheets.log', 'a+') as f:
-    f.write('{}: Added 8 hours to {} for {}\n'.format(
-        datetime.datetime.now(),
-        UNANET_PROJECT,
-        datetime.date.today() - datetime.timedelta(days=1)))
+else:
+    row = driver.find_element_by_xpath('//tr[@title={}]'.format(UNANET_PROJECT))
+    row_id = row.get_attribute('id')
+    cell = row.find_element_by_name('d_{}_{}'.format(row_id, position))
+    cell.send_keys(UNANET_HOURS)
+    driver.find_element_by_xpath('//button[@title="Save"]').click()
+    with open('timesheets.log', 'a+') as f:
+        f.write('{}: Added 8 hours to {} for {}\n'.format(
+            datetime.datetime.now(),
+            UNANET_PROJECT,
+            datetime.date.today() - datetime.timedelta(days=1)))
