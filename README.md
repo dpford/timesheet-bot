@@ -11,6 +11,7 @@ This bot will check to see if you've submitted hours for the previous day in you
 * `UNANET_USERNAME`
 * `UNANET_PASSWORD`
 * `UNANET_PROJECT` - the exact text inside the Project dropdown in your timesheet
+* `UNANET_TASK` - the exact text inside the Task dropdown in your timesheet
 * `UNANET_HOURS` - the number of hours you want entered
 
 ### Setup

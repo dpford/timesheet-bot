@@ -1,4 +1,5 @@
 #! /bin/bash
 source /home/your-user-name/.virtualenvs/timesheet-bot/bin/activate
+source /home/your-user-name/.virtualenvs/timesheet-bot/bin/postactivate
 cd /home/your-user-name/timesheet-bot/
 python timesheet.py
