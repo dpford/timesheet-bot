@@ -1,11 +1,12 @@
 import os
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 import datetime
 
 driver = webdriver.PhantomJS()
 
 UNANET_URL = os.environ.get('UNANET_URL')
-UNANET_USERNAME = os.environ.get('UNANET_USERNAME')
+NANET_USERNAME = os.environ.get('UNANET_USERNAME')
 UNANET_PASSWORD = os.environ.get('UNANET_PASSWORD')
 UNANET_PROJECT = os.environ.get('UNANET_PROJECT')
 UNANET_TASK = os.environ.get('UNANET_TASK')
@@ -20,11 +21,14 @@ passw.send_keys(UNANET_PASSWORD)
 login = driver.find_element_by_xpath('//button[@title="Ok"]')
 login.click()
 
-# Edit the active timesheet
-# TODO: Add case where there's no active timesheet
-edit_link = driver.find_element_by_xpath(
-    '//a[starts-with(@title, "Edit timesheet for")]')
-edit_link.click()
+# Check to see if there's an active timesheet
+try:
+    edit_link = driver.find_element_by_xpath(
+        '//a[starts-with(@title, "Edit timesheet for")]').click()
+except NoSuchElementException, e:
+    # Create a new timesheet
+    driver.find_element_by_xpath("//a[@title='Create Timesheet']").click() 
+    driver.find_element_by_xpath('//button[@title="Save"]').click()
 
 # Checks to see if any hours were entered for the day
 # If not, enter hours for your project and save
