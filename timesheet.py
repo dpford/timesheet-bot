@@ -6,7 +6,7 @@ import datetime
 driver = webdriver.PhantomJS()
 
 UNANET_URL = os.environ.get('UNANET_URL')
-NANET_USERNAME = os.environ.get('UNANET_USERNAME')
+UNANET_USERNAME = os.environ.get('UNANET_USERNAME')
 UNANET_PASSWORD = os.environ.get('UNANET_PASSWORD')
 UNANET_PROJECT = os.environ.get('UNANET_PROJECT')
 UNANET_TASK = os.environ.get('UNANET_TASK')
