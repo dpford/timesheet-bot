@@ -17,10 +17,11 @@ This bot will check to see if you've submitted hours for the previous day in you
 ### Setup
 
 1. Clone the repo on your server
-2. Setup a virtual environment and install requirements.txt
-3. Add the environment variables to a sourceable file
-4. Copy job.sh.sample to job.sh and customize as needed
-5. `crontab -e` and add something like:
+2. Install [PhantomJS](http://phantomjs.org/download.html)
+3. Setup a virtual environment and install requirements.txt
+4. Add the environment variables to a sourceable file (the sample uses /your-venv/bin/postactivate)
+5. Copy job.sh.sample to job.sh and customize as needed
+6. `crontab -e` and add something like:
 ```
 30 9 * * 2-6 /path/to/job.sh
 ```
